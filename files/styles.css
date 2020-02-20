@@ -1,0 +1,19 @@
+body {
+  color: #000;
+}
+
+.infobox-black {
+    color: #000;
+    border-color: #000;
+}
+.infobox-black > .infobox-icon > .ace-icon {
+    background-color: #000;
+}
+.infobox-black.infobox-dark {
+    background-color: #000;
+    border-color: #000;
+}
+
+.signup-box .toolbar {
+    background: none repeat scroll 0 0 #000;
+}
