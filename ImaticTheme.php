@@ -6,7 +6,7 @@ class ImaticThemePlugin extends MantisPlugin
 	{
 		$this->name = 'Imatic theme';
 		$this->description = 'Theme';
-		$this->version = '0.0.0';
+		$this->version = '0.0.1';
 		$this->requires = [
 			'MantisCore' => '2.0.0',
 		];
