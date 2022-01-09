@@ -73,3 +73,17 @@ blockquote {
     margin: 0 0 5px;
     border-color: #888d91;
 }
+
+/*set smaller H inside bugnotes*/
+td.bugnote-note h1 {
+font-size: 23px;
+}
+td.bugnote-note h2 {
+font-size: 21px;
+}
+td.bugnote-note h3 {
+font-size: 19px;
+}
+td.bugnote-note h4 {
+font-size: 17px;
+}
