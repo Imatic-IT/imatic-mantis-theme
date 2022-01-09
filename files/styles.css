@@ -65,3 +65,11 @@ select:focus {
 select[disabled] {
     color: #000 !important;
 }
+
+/*set smaller blockquote in bugnotes*/
+blockquote {
+    font-size: 1em !important;
+    padding: 5px 5px;
+    margin: 0 0 5px;
+    border-color: #888d91;
+}
