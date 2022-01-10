@@ -66,7 +66,7 @@ select[disabled] {
     color: #000 !important;
 }
 
-/*set smaller blockquote in bugnotes*/
+/*set smaller blockquote*/
 blockquote {
     font-size: 1em !important;
     padding: 5px 5px;
@@ -75,15 +75,19 @@ blockquote {
 }
 
 /*set smaller H inside bugnotes*/
-td.bugnote-note h1 {
+td.bugnote-note h1,
+td.bug-description h1 {
 font-size: 23px;
 }
-td.bugnote-note h2 {
+td.bugnote-note h2,
+td.bug-description h2 {
 font-size: 21px;
 }
-td.bugnote-note h3 {
+td.bugnote-note h3,
+td.bug-description h3 {
 font-size: 19px;
 }
-td.bugnote-note h4 {
+td.bugnote-note h4,
+td.bug-description h4 {
 font-size: 17px;
 }
