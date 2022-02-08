@@ -1,13 +1,30 @@
-//tady si vylovim vsechny prvky z danych class, jinej DOM identifikator nemam. nez seznam class names a jejich poradi. 
-var gettitle= document.getElementsByClassName('navbar-brand');
-var getbugid= document.getElementsByClassName('bug-id');
-//tady si je pojmenuju. to proto, ze pokud muzes pridat do templejtu stranky aby byla ID u spravnych tagu, vynechaji se tyto prvni 4 radky a zbytek bude dal fungovat elegantneji.
-gettitle[0].id="mantis-title";
-getbugid[1].id="bug-index";
-// no a ted kdyz uz mam jednoznacny ID tak tady prepisu titulek na "titulek + cislo + javascript" na onclick na nej. 
-var modtitle=document.getElementById('mantis-title');
-var bug2clip=document.getElementById('bug-index');
-modtitle.outerHTML=modtitle.outerHTML + '<span id="copy2clip" class="navbar-brand">['+bug2clip.innerText+']</span>';
-copy2clip.onclick=function() {
-  navigator.clipboard.writeText(bug2clip.innerText);
+// aby existovaly prazdne promenne
+var modtitle="";
+var bug2clip="";
+
+// az se nahraji vsechny class navbar-brand pridej id 'mantis-title' k prvni z nich
+document.getElementsByClassName('navbar-brand').onload = function(){
+  document.getElementsByClassName('navbar-brand')[0].id='mantis-title';
+  var modtitle=document.getElementById('mantis-title');
+  // a zkus zmenu nadpisu
+  newtitle();
+}
+// az se nahraji vsechny class bug-id pridej id 'bug-index' k druhe z nich
+document.getElementsByClassName('bug-id').onload=function(){
+  document.getElementsByClassName('bug-id')[0].id='bug-index';
+  var bug2clip=document.getElementById('bug-index');
+  //a zkus zmenu nadpisu
+  newtitle();
+}
+// pokud uz ID prvku mantis-title a zaroven bug-id ma hodnotu...
+function newtitle(){
+  // ...vyrob nove html do nadpisu i s javascriptem pro clipboard
+  if (modtitle.length > 0 && bug2clip.length > 0) {
+    modtitle.outerHTML=modtitle.outerHTML + '<span id="copy2clip" class="navbar-brand">['+bug2clip.innerText+']</span>';
+    copy2clip.onclick=function() {navigator.clipboard.writeText(bug2clip.innerText);}
+  }
+  // debug
+  else {
+    document.getElementsByClassName('navbar-brand')[0].innerText="nothing there";
+  }
 }
