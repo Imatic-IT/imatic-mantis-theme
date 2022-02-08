@@ -11,7 +11,7 @@ function newtitle(){
   document.getElementsByClassName('bug-id')[1].id='bug-index';
   var bug2clip=document.getElementById('bug-index');
   //...vyrob nove html do nadpisu 
-  modtitle.outerHTML=modtitle.outerHTML + '<span id="copy2clip" class="navbar-brand">['+bug2clip.innerText+']</span>';
+  modtitle.outerHTML+='<span id="copy2clip" class="navbar-brand">['+bug2clip.innerText+']</span>';
   // klik na nadpis = javascript copy bug-index text to clipboard
   copy2clip.onclick=function() {navigator.clipboard.writeText(bug2clip.innerText);}
 }
