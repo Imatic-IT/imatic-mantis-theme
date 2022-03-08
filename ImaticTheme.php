@@ -25,6 +25,7 @@ class ImaticThemePlugin extends MantisPlugin
 
   public function layout_resources_hook()
   {
+    
     return '<link rel="stylesheet" type="text/css" href="' . plugin_file('styles.css') . '&v=' . $this->version . '" />'
     . '<script type="text/javascript" src="' . plugin_file( 'navbar.js' ) . '&v=' . $this->version . '"></script>';
   }
