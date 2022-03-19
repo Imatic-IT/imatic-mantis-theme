@@ -1,9 +1,12 @@
 $(document).ready(function () {
   let navbar = $("#navbar");
   let lastSeen = $(".nav-recent ");
+  let searchBarFormUrl = $("#nav-search").find("form").attr("action");
   navbar.append('<div class="append-elements"></div>');
   let creteSearchBar = $(
-    '<div class="nav-search-cloned"><form class="form-search" method="post" action="/Imatic/imatic-mantis/jump_to_bug.php"><span class="input-icon"><input type="text" name="bug_id" autocomplete="off" class="nav-search-input" placeholder="Problém č."><i class="ace-icon fa fa-search nav-search-icon"></i></span></form></div>'
+    '<div class="nav-search-cloned"><form class="form-search" method="post" action="' +
+      searchBarFormUrl +
+      '"><span class="input-icon"><input type="text" name="bug_id" autocomplete="off" class="nav-search-input" placeholder="Problém č."><i class="ace-icon fa fa-search nav-search-icon"></i></span></form></div>'
   );
   let createClipboard = $(
     '<span class="clipboard-issue"><input readonly id="clipboard" class="clipboard-input"> <i  class=" clipboard-icon fa fa-external-link"></i> </span>'

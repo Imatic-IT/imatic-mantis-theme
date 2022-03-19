@@ -1,0 +1,251 @@
+diff --git a/.DS_Store b/.DS_Store
+new file mode 100644
+index 0000000..d8e1dd0
+Binary files /dev/null and b/.DS_Store differ
+diff --git a/files/navbar.js b/files/navbar.js
+index 39bcb97..0d983f6 100644
+--- a/files/navbar.js
++++ b/files/navbar.js
+@@ -1,31 +1,94 @@
+ $(document).ready(function () {
+   let navbar = $("#navbar");
+-  let issueSearchInput = $("#nav-search");
+   let lastSeen = $(".nav-recent ");
+-  let createEl = '<div class="append-elements"></div>';
+-  let createClipboard =
+-    '<span class="clipboard-issue"><input readonly id="clipboard" class="clipboard-input"> <i onclick="copyToClipboard()" class=" clipboard-icon fa fa-clipboard"></i> </span>';
+-
+-  moveElements(navbar, createEl);
++  navbar.append('<div class="append-elements"></div>');
++  let creteSearchBar = $(
++    '<div class="nav-search-cloned"><form class="form-search" method="post" action="/Imatic/imatic-mantis/jump_to_bug.php"><span class="input-icon"><input type="text" name="bug_id" autocomplete="off" class="nav-search-input" placeholder="Problém č."><i class="ace-icon fa fa-search nav-search-icon"></i></span></form></div>'
++  );
++  let createClipboard = $(
++    '<span class="clipboard-issue"><input readonly id="clipboard" class="clipboard-input"> <i  class=" clipboard-icon fa fa-external-link"></i> </span>'
++  );
+   let parent = $(".append-elements");
+ 
+-  moveElements(parent, issueSearchInput, "search-input");
+-  moveElements(parent, lastSeen, "last-seen");
++  createContent(parent, creteSearchBar);
+ 
+   let oppenedIssue = getCurrentOpenedIssue();
+ 
+   if (oppenedIssue) {
+-    lastSeen.css({
+-      left: "390px",
+-    });
+     moveElements(parent, createClipboard);
+ 
+     $("#clipboard").val(oppenedIssue);
++
++    copyToClipboardUrl(oppenedIssue);
++
++    copyToClipboardIssue();
+   }
++
++  // LAST SEEN
++  let lastSeenChildrens = lastSeen.children();
++
++  lastSeenP = '<span class="last-seen"> Naposledy Navštívené: </span>';
++
++  parent.append(lastSeenP);
++  lastSeenChildrens.each(function (k, i) {
++    var child = i.cloneNode(true);
++
++    $(".last-seen").append(child);
++
++    let attrVal = $(".last-seen a:nth-child(" + k + ")").text();
++
++    $(".last-seen a:nth-child(" + k + ")").text(attrVal + ", ");
++  });
+ });
+ 
+ //-------------- FUNCTIONS -----------------
+ 
++function copyToClipboardUrl(currentVal) {
++  var temp = $("#clipboard");
++  var url = $(location).attr("href");
++  $(".clipboard-icon").click(function () {
++    // $("body").append(temp);
++    temp.val(url).select();
++    document.execCommand("copy");
++    // temp.remove();
++    temp.val("URL copied!");
++
++    setTimeout(function () {
++      temp.val(currentVal);
++    }, 800);
++  });
++}
++
++function copyToClipboardIssue() {
++  $("#clipboard").on("click", function () {
++    let _this = $(this);
++
++    copyToClipboard(_this);
++
++    _this.val("Issue copied");
++
++    setTimeout(function () {
++      _this.val(oppenedIssue);
++    }, 800);
++  });
++}
++
++//COPY TO CLIPBOARD
++function copyToClipboard() {
++  let thisButton = $(".clipboard-icon");
++  var text = document.getElementById("clipboard").value;
++  var sampleTextarea = document.createElement("textarea");
++  document.body.appendChild(sampleTextarea);
++  sampleTextarea.value = text; //save main text in it
++  sampleTextarea.select(); //select textarea contenrs
++  document.execCommand("copy");
++  document.body.removeChild(sampleTextarea);
++}
++
++function createContent(appendTo, created) {
++  created.appendTo(appendTo);
++}
++
+ // MOVE ELEMENTS
+ function moveElements(el, appended, addClass = null) {
+   el.append(appended);
+@@ -52,10 +115,4 @@ function copyToClipboard() {
+   sampleTextarea.select(); //select textarea contenrs
+   document.execCommand("copy");
+   document.body.removeChild(sampleTextarea);
+-
+-  thisButton.toggleClass("fa-clipboard").toggleClass("fa-check");
+-
+-  setTimeout(function () {
+-    thisButton.toggleClass("fa-clipboard").toggleClass("fa-check");
+-  }, 1000);
+ }
+diff --git a/files/styles.css b/files/styles.css
+index 5f925d5..61a7ec0 100644
+--- a/files/styles.css
++++ b/files/styles.css
+@@ -94,8 +94,7 @@ td.bug-description h4 {
+ 
+ /* MOVED ELEMENTS (navbar.js) */
+ 
+-/* Search issue input */
+-.search-input {
++.nav-search-cloned {
+     position: relative;
+     top: 11px;
+     left: 10px;
+@@ -104,6 +103,33 @@ td.bug-description h4 {
+     margin-right: 15px;
+ }
+ 
++.nav-search-cloned .nav-search-input {
++    width: 120px;
++}
++
++.nav-search-cloned .nav-search-input {
++    border: 1px solid #6fb3e0;
++    width: 152px;
++    height: 28px !important;
++    padding-top: 2px;
++    padding-bottom: 2px;
++    border-radius: 4px !important;
++    font-size: 13px;
++    line-height: 1.3;
++    color: #666 !important;
++    z-index: 11;
++    -webkit-transition: width ease 0.15s;
++    -o-transition: width ease 0.15s;
++    transition: width ease 0.15s;
++}
++
++.form-search .nav-search-icon {
++    color: #6fb3e0 !important;
++    font-size: 14px !important;
++    line-height: 24px !important;
++    background-color: transparent;
++}
++
+ .clipboard-issue {
+     position: relative;
+     top: 11px;
+@@ -128,6 +154,7 @@ td.bug-description h4 {
+ 
+     position: relative;
+     left: -1px;
++    top: 1px;
+ 
+     padding: 5px;
+     border-top: 1px solid #fff;
+@@ -139,17 +166,62 @@ td.bug-description h4 {
+     opacity: 0.5;
+ }
+ 
++#clipboard:hover {
++    cursor: pointer;
++    opacity: 0.5;
++}
++
+ /* Last seen */
+ .last-seen {
+-    top: 18px;
+-    left: 260px;
+-    /* left: 390px; */
++    position: relative;
++    top: 10px;
++    margin-left: 5px;
+     color: #fff;
+ }
+ 
++@media screen and (max-width: 1395px) {
++    .last-seen a:nth-child(5) {
++        display: none;
++    }
++}
++@media screen and (max-width: 1336px) {
++    .last-seen a:nth-child(4) {
++        display: none;
++    }
++}
++
++@media screen and (max-width: 1270px) {
++    .last-seen a:nth-child(3) {
++        display: none;
++    }
++}
++@media screen and (max-width: 1210px) {
++    .last-seen a:nth-child(2) {
++        display: none;
++    }
++}
+ 
+-@media screen and (max-width: 1250px) {
++@media screen and (max-width: 1150px) {
+     .last-seen {
+-      display: none;
++        display: none;
+     }
+-  }
+\ No newline at end of file
++}
++
++
++
++/* ICONS */
++.access_icon {
++    /* border: 1px solid #000;
++    padding: 5px; */
++    margin: 0 3px 0 3px;
++    font-size: 20px;
++}
++
++.access_icon_letter {
++    background-color: #666;
++    color: #fff;
++    border: 1px solid #000;
++    margin: 0 3px 0 4px;
++    padding: 0 3px;
++    font-size: 10px;
++}

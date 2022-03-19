@@ -209,19 +209,3 @@ td.bug-description h4 {
 
 
 
-/* ICONS */
-.access_icon {
-    /* border: 1px solid #000;
-    padding: 5px; */
-    margin: 0 3px 0 3px;
-    font-size: 20px;
-}
-
-.access_icon_letter {
-    background-color: #666;
-    color: #fff;
-    border: 1px solid #000;
-    margin: 0 3px 0 4px;
-    padding: 0 3px;
-    font-size: 10px;
-}
