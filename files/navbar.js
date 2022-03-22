@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     copyToClipboardUrl(oppenedIssue);
 
-    copyToClipboardIssue();
+    copyToClipboardIssue(oppenedIssue);
   }
 
   // LAST SEEN
@@ -62,10 +62,11 @@ function copyToClipboardUrl(currentVal) {
   });
 }
 
-function copyToClipboardIssue() {
+function copyToClipboardIssue(oppenedIssue) {
   $("#clipboard").on("click", function () {
     let _this = $(this);
 
+    console.log(_this);
     copyToClipboard(_this);
 
     _this.val("Issue copied");
