@@ -1,6 +1,7 @@
 $(document).ready(function () {
   let navbar = $("#navbar");
   let lastSeen = $(".nav-recent ");
+  let lastSeenMessage = $(lastSeen.contents()[0]).text();
   let searchBarFormUrl = $("#nav-search").find("form").attr("action");
   navbar.append('<div class="append-elements"></div>');
   let creteSearchBar = $(
@@ -30,7 +31,7 @@ $(document).ready(function () {
   // LAST SEEN
   let lastSeenChildrens = lastSeen.children();
 
-  lastSeenP = '<span class="last-seen"> Naposledy Navštívené: </span>';
+  lastSeenP = '<span class="last-seen"> ' + lastSeenMessage + " </span>";
 
   parent.append(lastSeenP);
   lastSeenChildrens.each(function (k, i) {
@@ -50,15 +51,13 @@ function copyToClipboardUrl(currentVal) {
   var temp = $("#clipboard");
   var url = $(location).attr("href");
   $(".clipboard-icon").click(function () {
-    // $("body").append(temp);
     temp.val(url).select();
     document.execCommand("copy");
-    // temp.remove();
     temp.val("URL copied!");
 
     setTimeout(function () {
       temp.val(currentVal);
-    }, 800);
+    }, 500);
   });
 }
 
@@ -73,7 +72,7 @@ function copyToClipboardIssue(oppenedIssue) {
 
     setTimeout(function () {
       _this.val(oppenedIssue);
-    }, 800);
+    }, 500);
   });
 }
 
