@@ -2,7 +2,9 @@
 
 ## Purpose
 
-Customized Mantis appearance.
+Customized Mantis appearance. 
+
+Add toolbar with recently visited issues, issue search and copy issue and url into the navbar.
 
 ## Installation
 
