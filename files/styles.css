@@ -92,6 +92,13 @@ td.bug-description h4 {
     font-size: 17px;
 }
 
+/*better table when using markdown in bugnotes*/
+td.bugnote-note table > tbody > tr > td,
+td.bugnote-note table > thead > tr > th {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
 /* MOVED ELEMENTS (navbar.js) */
 
 .nav-search-cloned {
