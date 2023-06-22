@@ -6,7 +6,7 @@ class ImaticThemePlugin extends MantisPlugin
   {
     $this->name = 'Imatic theme';
     $this->description = 'Theme';
-    $this->version = '0.2.0';
+    $this->version = '0.2.1';
     $this->requires = [
       'MantisCore' => '2.0.0',
     ];
@@ -26,7 +26,6 @@ class ImaticThemePlugin extends MantisPlugin
   public function layout_resources_hook()
   {
     
-    return '<link rel="stylesheet" type="text/css" href="' . plugin_file('styles.css') . '&v=' . $this->version . '" />'
-    . '<script type="text/javascript" src="' . plugin_file( 'navbar.js' ) . '&v=' . $this->version . '"></script>';
+    return '<link rel="stylesheet" type="text/css" href="' . plugin_file('styles.css') . '&v=' . $this->version . '" />';
   }
 }
