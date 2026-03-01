@@ -98,3 +98,8 @@ td.bugnote-note table > thead > tr > th {
   padding-left: 8px;
   padding-right: 8px;
 }
+
+
+#imaticEditBugButton{
+    margin-right: 1px ;
+}
