@@ -5,12 +5,4 @@ document.addEventListener('DOMContentLoaded', function () {
     if (newButton && widgetToolbox) {
         widgetToolbox.insertBefore(newButton, widgetToolbox.firstChild);
     }
-
-    const nav = document.querySelector("ul.nav.ace-nav");
-    if (nav) {
-        const liToRemove = nav.querySelector("li.hidden-sm.hidden-xs");
-        if (liToRemove) {
-            nav.removeChild(liToRemove);
-        }
-    }
 });
