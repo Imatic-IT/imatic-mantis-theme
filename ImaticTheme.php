@@ -45,7 +45,7 @@ class ImaticThemePlugin extends MantisPlugin
 
         if ($t_flags['can_update']) {
             echo '<div id="imaticEditBugButton" class="btn-group pull-left">';
-            html_button(string_get_bug_update_page(), lang_get('update_bug_button'), array('bug_id' => $p_bug_id));
+            html_button(string_get_bug_update_page(), lang_get('edit'), array('bug_id' => $p_bug_id));
             echo '</div>';
         }
     }
